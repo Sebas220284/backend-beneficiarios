@@ -1,0 +1,67 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: padron_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_ADMIN_USER}
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    # No se publica el 5432: pgAdmin y el backend entran por la red interna.
+    # Si necesitas conectarte desde tu PC, descomenta (solo localhost):
+    # ports:
+    #   - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_ADMIN_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [padron_net]
+
+  backend:
+    build: ./backend
+    container_name: padron_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME}
+      DB_USER: padron_app
+      DB_PASSWORD: ${APP_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES: 8h
+      DATA_ENC_KEY: ${DATA_ENC_KEY}
+      DATA_HASH_KEY: ${DATA_HASH_KEY}
+      CORS_ORIGINS: ${CORS_ORIGINS}
+    ports:
+      - "3000:3000"
+    networks: [padron_net]
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: padron_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "127.0.0.1:5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on: [db]
+    networks: [padron_net]
+
+volumes:
+  pgdata:
+  pgadmin_data:
+
+networks:
+  padron_net:
