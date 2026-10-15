@@ -12,7 +12,7 @@ const app = express();
 
 app.disable('x-powered-by');
 app.use(helmet());
-app.use(cors({ origin: cfg.corsOrigins.length ? cfg.corsOrigins : false }));
+app.use(cors({ origin: cfg.corsOrigins.length ? cfg.corsOrigins : true }));
 app.use(express.json({ limit: '100kb' }));
 app.use(rateLimit({ windowMs: 60 * 1000, max: 120, standardHeaders: true, legacyHeaders: false }));
 
