@@ -1,0 +1,11 @@
+{
+  "name": "backend-beneficiarios-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lanzador raíz del backend",
+  "scripts": {
+    "dev": "npm run dev --prefix backend",
+    "start": "npm start --prefix backend",
+    "seed": "node backend/src/scripts/seedAdmin.js"
+  }
+}
