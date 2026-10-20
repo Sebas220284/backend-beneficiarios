@@ -11,6 +11,10 @@ module.exports = (err, req, res, next) => {
   if (err.code === '23503') return res.status(400).json({ error: 'Referencia inválida' });
   if (err.type === 'entity.parse.failed') return res.status(400).json({ error: 'JSON inválido' });
 
-  console.error('Error:', err.message); 
-  res.status(500).json({ error: 'Error interno del servidor' });
+  console.error('Error:', err.message, err.stack || '');
+  res.status(500).json({
+    error: 'Error interno del servidor',
+    detalle: err.message,
+    codigo: err.code || undefined,
+  });
 };

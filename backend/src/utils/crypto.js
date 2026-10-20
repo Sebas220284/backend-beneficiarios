@@ -14,15 +14,24 @@ function encrypt(plain, context) {
 
 function decrypt(payload, context) {
   if (!payload) return null;
-  const [ver, iv, tag, data] = payload.split(':');
-  if (ver !== 'v1') throw new Error('Versión de cifrado desconocida');
-  const decipher = crypto.createDecipheriv('aes-256-gcm', encKey, Buffer.from(iv, 'base64'));
-  decipher.setAAD(Buffer.from(context));
-  decipher.setAuthTag(Buffer.from(tag, 'base64'));
-  return Buffer.concat([
-    decipher.update(Buffer.from(data, 'base64')),
-    decipher.final(),
-  ]).toString('utf8');
+  const str = String(payload);
+  if (!str.startsWith('v1:')) {
+    // Si el dato fue insertado en texto plano en la BD, devolverlo sin lanzar error 500
+    return str;
+  }
+  try {
+    const [, iv, tag, data] = str.split(':');
+    const decipher = crypto.createDecipheriv('aes-256-gcm', encKey, Buffer.from(iv, 'base64'));
+    decipher.setAAD(Buffer.from(context));
+    decipher.setAuthTag(Buffer.from(tag, 'base64'));
+    return Buffer.concat([
+      decipher.update(Buffer.from(data, 'base64')),
+      decipher.final(),
+    ]).toString('utf8');
+  } catch (err) {
+    console.warn(`Aviso: No se pudo descifrar campo (${context}):`, err.message);
+    return '******************';
+  }
 }
 
 function blindIndex(value) {
