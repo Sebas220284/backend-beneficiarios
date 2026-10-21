@@ -65,7 +65,7 @@ const idSchema = z.object({ id: z.coerce.number().int().positive() });
 
 const listSchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
-  limit: z.coerce.number().int().min(1).max(100).default(20),
+  limit: z.coerce.number().int().min(1).max(1000).default(20),
   q: z.string().trim().max(100).optional(),
   curp: z.string().trim().toUpperCase().regex(CURP_RE).optional(),
 });
@@ -142,7 +142,7 @@ function present(b, rol) {
   };
 }
 
-router.get('/', authorize('admin', 'capturista', 'consulta'), async (req, res, next) => {
+router.get('/', authorize('admin', 'supervisor', 'capturista', 'consulta'), async (req, res, next) => {
   try {
     const { page, limit, q, curp } = listSchema.parse(req.query);
     const params = [];
@@ -159,19 +159,20 @@ router.get('/', authorize('admin', 'capturista', 'consulta'), async (req, res, n
     params.push(limit, (page - 1) * limit);
 
     const { rows } = await query(
-      `SELECT b.id, b.nombres, b.apellido_paterno, b.apellido_materno, b.sexo,
-              b.codigo_postal, b.curp_cifrado,
+      `SELECT b.*,
               date_part('year', age(b.fecha_nacimiento))::int AS edad,
               s.tipo_ayuda AS ultima_ayuda, s.fecha_solicitud AS ultima_solicitud,
+              s.ha_recibido_apoyo_dif_estatal, s.descripcion_apoyo_dif_estatal,
               COUNT(*) OVER()::int AS total
          FROM beneficiarios b
          LEFT JOIN LATERAL (
-           SELECT tipo_ayuda, fecha_solicitud FROM solicitudes_ayuda
+           SELECT tipo_ayuda, fecha_solicitud, ha_recibido_apoyo_dif_estatal, descripcion_apoyo_dif_estatal
+             FROM solicitudes_ayuda
             WHERE beneficiario_id = b.id
             ORDER BY fecha_solicitud DESC, id DESC LIMIT 1
          ) s ON TRUE
          ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
-         ORDER BY b.apellido_paterno, b.apellido_materno, b.nombres
+         ORDER BY b.id ASC
          LIMIT $${params.length - 1} OFFSET $${params.length}`,
       params
     );
@@ -180,23 +181,32 @@ router.get('/', authorize('admin', 'capturista', 'consulta'), async (req, res, n
     res.json({
       page, limit,
       total: rows[0]?.total ?? 0,
-      data: rows.map((r) => ({
-        id: r.id,
-        nombre: [r.nombres, r.apellido_paterno, r.apellido_materno].filter(Boolean).join(' '),
-        edad: r.edad,
-        sexo: r.sexo,
-        codigoPostal: r.codigo_postal,
-        curp: maskCurp(decrypt(r.curp_cifrado, 'benef.curp')),
-        ultimaAyuda: r.ultima_ayuda,
-        ultimaSolicitud: r.ultima_solicitud,
-      })),
+      data: rows.map((r) => {
+        const fullData = present(r, req.user.rol);
+        return {
+          ...fullData,
+          nombre: [r.nombres, r.apellido_paterno, r.apellido_materno].filter(Boolean).join(' '),
+          codigoPostal: r.codigo_postal,
+          ultimaAyuda: r.ultima_ayuda,
+          ultimaSolicitud: r.ultima_solicitud,
+          haRecibidoApoyoDifEstatal: Boolean(r.ha_recibido_apoyo_dif_estatal),
+          descripcionApoyoDifEstatal: r.descripcion_apoyo_dif_estatal || null,
+          solicitudes: r.solicitudes || (r.ultima_ayuda ? [{
+            fechaSolicitud: r.ultima_solicitud,
+            tipoAyuda: r.ultima_ayuda,
+            haRecibidoApoyoDifEstatal: Boolean(r.ha_recibido_apoyo_dif_estatal),
+            descripcionApoyoDifEstatal: r.descripcion_apoyo_dif_estatal || null,
+          }] : []),
+          servicios: r.servicios || [],
+        };
+      }),
     });
   } catch (e) {
     next(e);
   }
 });
 
-router.get('/:id', authorize('admin', 'capturista', 'consulta'), async (req, res, next) => {
+router.get('/:id', authorize('admin', 'supervisor', 'capturista', 'consulta'), async (req, res, next) => {
   try {
     const { id } = idSchema.parse(req.params);
     const { rows } = await query(
@@ -237,7 +247,7 @@ router.get('/:id', authorize('admin', 'capturista', 'consulta'), async (req, res
   }
 });
 
-router.post('/', authorize('admin', 'capturista'), async (req, res, next) => {
+router.post('/', authorize('admin', 'supervisor', 'capturista'), async (req, res, next) => {
   try {
     const d = beneficiarioSchema.parse(req.body);
     if (!d.ayuda) return res.status(400).json({ error: 'Falta el objeto "ayuda" (solicitud inicial)' });
@@ -262,7 +272,7 @@ router.post('/', authorize('admin', 'capturista'), async (req, res, next) => {
   }
 });
 
-router.put('/:id', authorize('admin', 'capturista'), async (req, res, next) => {
+router.put('/:id', authorize('admin', 'supervisor', 'capturista'), async (req, res, next) => {
   try {
     const { id } = idSchema.parse(req.params);
     const d = beneficiarioSchema.parse(req.body);
@@ -287,7 +297,7 @@ router.put('/:id', authorize('admin', 'capturista'), async (req, res, next) => {
   }
 });
 
-router.post('/:id/solicitudes', authorize('admin', 'capturista'), async (req, res, next) => {
+router.post('/:id/solicitudes', authorize('admin', 'supervisor', 'capturista'), async (req, res, next) => {
   try {
     const { id } = idSchema.parse(req.params);
     const a = ayudaSchema.parse(req.body);
@@ -301,7 +311,7 @@ router.post('/:id/solicitudes', authorize('admin', 'capturista'), async (req, re
   }
 });
 
-router.delete('/:id', authorize('admin'), async (req, res, next) => {
+router.delete('/:id', authorize('admin', 'supervisor', 'capturista'), async (req, res, next) => {
   try {
     const { id } = idSchema.parse(req.params);
     const r = await query('DELETE FROM beneficiarios WHERE id = $1', [id]);
