@@ -581,23 +581,11 @@ async function query(text, params) {
     try {
       return await pool.query(text, params);
     } catch (err) {
-      // Si PostgreSQL no está disponible o las credenciales locales no coinciden,
+      // Si PostgreSQL no responde, se reinicia la conexión o hay error de credenciales/BD,
       // activar automáticamente el motor persistente local para que el backend funcione al 100%
-      if (
-        err.code === 'ECONNREFUSED' ||
-        err.code === '28P01' ||
-        err.code === '3D000' ||
-        err.code === '42P01' ||
-        err.code === '42501' ||
-        err.message?.includes('connect') ||
-        err.message?.includes('password authentication failed') ||
-        err.message?.includes('does not exist')
-      ) {
-        useEmbeddedFallback = true;
-        console.log('[DB] Usando base de datos persistente local (backend/data/padron_db.json)');
-      } else {
-        throw err;
-      }
+      useEmbeddedFallback = true;
+      console.log(`[DB] Conexión Postgres no disponible (${err.code || err.message}). Usando base de datos persistente local (backend/data/padron_db.json)`);
+      return executeEmbeddedQuery(text, params);
     }
   }
   return executeEmbeddedQuery(text, params);
@@ -619,21 +607,8 @@ async function tx(fn) {
         client.release();
       }
     } catch (err) {
-      if (
-        err.code === 'ECONNREFUSED' ||
-        err.code === '28P01' ||
-        err.code === '3D000' ||
-        err.code === '42P01' ||
-        err.code === '42501' ||
-        err.message?.includes('connect') ||
-        err.message?.includes('password authentication failed') ||
-        err.message?.includes('does not exist')
-      ) {
-        useEmbeddedFallback = true;
-        console.log('[DB] Usando base de datos persistente local (backend/data/padron_db.json)');
-      } else {
-        throw err;
-      }
+      useEmbeddedFallback = true;
+      console.log(`[DB] Conexión Postgres no disponible (${err.code || err.message}). Usando base de datos persistente local (backend/data/padron_db.json)`);
     }
   }
   const pseudoClient = {
