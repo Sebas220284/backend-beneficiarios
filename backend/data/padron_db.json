@@ -366,160 +366,6 @@
   ],
   "audit_log": [
     {
-      "id": 210,
-      "fecha": "2026-10-20T20:55:11.112Z",
-      "usuario_id": 6,
-      "usuario": "supervisor@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 211,
-      "fecha": "2026-10-20T20:55:46.931Z",
-      "usuario_id": null,
-      "usuario": "prueba@gmail.com.mx",
-      "accion": "LOGIN_OK",
-      "recurso": "usuarios",
-      "recurso_id": 4,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 212,
-      "fecha": "2026-10-20T20:55:47.144Z",
-      "usuario_id": 4,
-      "usuario": "prueba@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 213,
-      "fecha": "2026-10-20T20:55:47.197Z",
-      "usuario_id": 4,
-      "usuario": "prueba@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 214,
-      "fecha": "2026-10-20T20:57:29.613Z",
-      "usuario_id": 4,
-      "usuario": "prueba@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 215,
-      "fecha": "2026-10-20T20:57:29.673Z",
-      "usuario_id": 4,
-      "usuario": "prueba@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 216,
-      "fecha": "2026-10-20T20:57:53.466Z",
-      "usuario_id": null,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LOGIN_OK",
-      "recurso": "usuarios",
-      "recurso_id": 5,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 217,
-      "fecha": "2026-10-20T20:57:53.512Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 218,
-      "fecha": "2026-10-20T20:57:53.546Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 219,
-      "fecha": "2026-10-20T20:57:59.744Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 220,
-      "fecha": "2026-10-20T20:57:59.767Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 221,
-      "fecha": "2026-10-20T20:58:08.301Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 222,
-      "fecha": "2026-10-20T20:58:08.354Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
-      "id": 223,
-      "fecha": "2026-10-20T20:58:30.769Z",
-      "usuario_id": 5,
-      "usuario": "difmunicipal@gmail.com.mx",
-      "accion": "LISTAR",
-      "recurso": "beneficiarios",
-      "recurso_id": null,
-      "ip": "::1",
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
-    },
-    {
       "id": 224,
       "fecha": "2026-10-20T20:58:30.945Z",
       "usuario_id": 5,
@@ -5864,6 +5710,160 @@
       "recurso_id": null,
       "ip": "::1",
       "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-27T18:15:33.889Z",
+      "usuario_id": 4,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-27T18:15:33.930Z",
+      "usuario_id": 4,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:28:50.412Z",
+      "usuario_id": null,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LOGIN_OK",
+      "recurso": "usuarios",
+      "recurso_id": 4,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:28:50.583Z",
+      "usuario_id": 4,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:28:50.652Z",
+      "usuario_id": 4,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:28:56.078Z",
+      "usuario_id": 4,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:28:56.150Z",
+      "usuario_id": 4,
+      "usuario": "prueba@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:29:34.848Z",
+      "usuario_id": null,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LOGIN_OK",
+      "recurso": "usuarios",
+      "recurso_id": 5,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:29:34.931Z",
+      "usuario_id": 5,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:29:34.974Z",
+      "usuario_id": 5,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:36:56.792Z",
+      "usuario_id": 5,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T17:36:57.071Z",
+      "usuario_id": 5,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T18:58:09.487Z",
+      "usuario_id": 5,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "id": 501,
+      "fecha": "2026-10-28T18:58:09.591Z",
+      "usuario_id": 5,
+      "usuario": "difmunicipal@gmail.com.mx",
+      "accion": "LISTAR",
+      "recurso": "beneficiarios",
+      "recurso_id": null,
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; SM-A556B) AppleWebKit/537.36 (KHTML, like Gecko) Edg/156.0.0.0 Mobile Safari/537.36"
     }
   ]
 }
